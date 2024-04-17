@@ -1,0 +1,76 @@
+dev: true
+debug: true
+testnet: false
+
+log_level: debug
+
+db:
+  host: db
+  port: 5432
+  name: processing
+  username: postgres
+  password: postgres
+  debug_log_mode: true
+
+blockchain:
+  tron:
+    attributes:
+      trx_refund_threshold: 1000000
+    explorer:
+      enabled: true
+      grpc_address: explorer-tron:8084
+      http_address: explorer-tron:8090
+      wait_block: 5m
+    node:
+      grpc_address: grpc.shasta.trongrid.io:50051
+      http_address: https://api.shasta.trongrid.io
+      bandwidth_per_tx_quantity: 268
+  bitcoin:
+    attributes:
+      fees:
+        fee_per_byte: 100
+    explorer:
+      enabled: true
+      grpc_address: explorer-btc:8085
+      http_address: explorer-btc:8091
+      wait_block: 2h
+    node:
+      address: bitcoin-node:8332
+      login: bitcoin-login
+      secret: bitcoin-password
+
+telegram:
+  token: ""
+  chats: "1,2,3"
+
+api:
+  listen: 0.0.0.0:8082
+
+sentry:
+  enabled: false
+  environment: dev
+  dsn: sentry-url
+
+smtp:
+    host: 127.0.0.1
+    port: 5484
+    from: example@ex.com
+    password: pass
+
+#fees:
+#  bitcoin:
+#    feePerByte: 100
+
+prelaunch:
+  transaction:
+    skip:
+      btc: true
+
+ops:
+  enabled: true
+  metrics:
+    enabled: true
+    basic_auth:
+      enabled: true
+      username: admin
+      password: "!StrongPassword1234!"

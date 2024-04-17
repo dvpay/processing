@@ -1,0 +1,15 @@
+[Unit]
+Description=Processing service
+After=network.target
+
+[Service]
+User=root
+Restart=always
+RestartSec=3
+WorkingDirectory=/var/app
+ExecStart=/var/app/processing
+ExecStop=pkill -15 processing
+LimitNOFILE=999999
+
+[Install]
+WantedBy=multi-user.target

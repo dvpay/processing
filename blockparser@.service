@@ -1,0 +1,19 @@
+[Unit]
+Description=%I block parser
+Wants=network.target
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+LimitNOFILE=999999
+User=root
+Group=root
+Restart=always
+RestartSec=10
+WorkingDirectory=/var/app
+ExecStart=/var/app/blockparser-%I
+
+[Install]
+WantedBy=multi-user.target
